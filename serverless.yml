@@ -1,0 +1,22 @@
+service: aws-rust
+provider:
+  name: aws
+  runtime: provided
+  memorySize: 128
+plugins:
+  - serverless-rust
+custom:
+  rust:
+    dockerTag: '0.2.0-rust-1.30.1'
+package:
+  individually: true
+  exclude:
+    - ./**
+functions:
+  hello:
+    handler: liblambda.handler
+    package:
+      include:
+        - liblambda.so
+    events:
+      - schedule: rate(5 minutes)
