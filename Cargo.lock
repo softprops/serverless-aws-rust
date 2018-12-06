@@ -564,7 +564,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "serverless-crowbar"
+name = "serverless-aws-rust"
 version = "0.1.0"
 dependencies = [
  "lambda_runtime 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
