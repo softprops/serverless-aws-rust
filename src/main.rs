@@ -1,16 +1,13 @@
-extern crate lambda_runtime as lambda;
-extern crate serde_json;
-
-use std::error::Error;
-
+use lambda_runtime::{error::HandlerError, lambda, Context};
 use serde_json::Value;
-use lambda::{error::HandlerError, lambda};
 
-fn main() -> Result<(), Box<dyn Error>> {
-    lambda!(my_handler);
-    Ok(())
+fn main() {
+    lambda!(handler)
 }
 
-fn my_handler(e: Value, _: lambda::Context) -> Result<Value, HandlerError> {
-    Ok(e)
+fn handler(
+    event: Value,
+    _: Context,
+) -> Result<Value, HandlerError> {
+    Ok(event)
 }

@@ -7,16 +7,16 @@ plugins:
   - serverless-rust
 custom:
   rust:
-    dockerTag: '0.2.0-rust-1.30.1'
+    dockerTag: '0.2.0-rust-1.31.0'
 package:
   individually: true
   exclude:
     - ./**
 functions:
   hello:
-    handler: liblambda.handler
+    handler: serverless-aws-rust.handler
     package:
       include:
-        - liblambda.so
-    events:
-      - schedule: rate(5 minutes)
+        - target/lambda/release/serverless-aws-rust
+    #events:
+    #  - schedule: rate(5 minutes)

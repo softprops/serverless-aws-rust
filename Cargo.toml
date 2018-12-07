@@ -1,6 +1,7 @@
 [package]
 name = "serverless-aws-rust"
 version = "0.1.0"
+edition = "2018"
 
 [dependencies]
 lambda_runtime = "0.1"
