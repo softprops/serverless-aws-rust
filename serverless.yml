@@ -17,6 +17,6 @@ functions:
     handler: serverless-aws-rust.handler
     package:
       include:
-        - target/lambda/release/serverless-aws-rust
+        - bootstrap
     #events:
     #  - schedule: rate(5 minutes)
