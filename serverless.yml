@@ -14,9 +14,6 @@ package:
     - ./**
 functions:
   hello:
-    handler: serverless-aws-rust.handler
-    package:
-      include:
-        - bootstrap
+    handler: serverless-aws-rust
     #events:
     #  - schedule: rate(5 minutes)
