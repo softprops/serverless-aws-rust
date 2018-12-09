@@ -1,19 +1,17 @@
 service: aws-rust
 provider:
   name: aws
-  runtime: provided
+  runtime: rust
   memorySize: 128
-plugins:
-  - serverless-rust
-custom:
-  rust:
-    dockerTag: '0.2.0-rust-1.31.0'
 package:
   individually: true
-  exclude:
-    - ./**
+plugins:
+  - serverless-rust
 functions:
   hello:
+    # handler value syntax is `{cargo-package}.{bin-name}`
+    # or `{bin-name}` for short when you are building a
+    # default bin for a given package.
     handler: serverless-aws-rust
     #events:
     #  - schedule: rate(5 minutes)
