@@ -1,6 +1,10 @@
 # serverless AWS Rust template
 
-A sample template for bootstraping [Rustlang AWS Lambda](https://github.com/awslabs/aws-lambda-rust-runtime/) applications with ⚡ serverless framework ⚡. See the [serverless-rust plugin's documentation](https://github.com/softprops/serverless-rust) for more information
+A sample template for bootstraping [Rustlang AWS Lambda](https://github.com/awslabs/aws-lambda-rust-runtime/) applications with ⚡ serverless framework ⚡.
+
+> ℹ️ See the [serverless-rust plugin's documentation](https://github.com/softprops/serverless-rust) for more information on plugin usage.
+
+> ℹ️ See the [aws rust runtime's documentation](https://github.com/awslabs/aws-lambda-rust-runtime) for more information on writing Rustlang lambda functions
 
 ## ✨ features
 
