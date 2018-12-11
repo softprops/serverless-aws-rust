@@ -2,10 +2,6 @@
 
 A sample template for bootstraping [Rustlang AWS Lambda](https://github.com/awslabs/aws-lambda-rust-runtime/) applications with ⚡ serverless framework ⚡.
 
-> ℹ️ See the [serverless-rust plugin's documentation](https://github.com/softprops/serverless-rust) for more information on plugin usage.
-
-> ℹ️ See the [aws rust runtime's documentation](https://github.com/awslabs/aws-lambda-rust-runtime) for more information on writing Rustlang lambda functions
-
 ## ✨ features
 
 * 🦀 Build Rustlang applications with ease
@@ -97,3 +93,9 @@ Experimentation will likely facilitate retiring ideas. Retiring applications sho
 ```bash
 $ AWS_PROFILE=prod make destroy
 ```
+
+## ℹ️  additional information
+
+* See the [serverless-rust plugin's documentation](https://github.com/softprops/serverless-rust) for more information on plugin usage.
+
+* See the [aws rust runtime's documentation](https://github.com/awslabs/aws-lambda-rust-runtime) for more information on writing Rustlang lambda functions
