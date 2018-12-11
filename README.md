@@ -76,6 +76,15 @@ Add your changes to git and push them to github.
 
 Finally, https://travis-ci.org/{username}/{my-new-service} in your browser and grab a bucket of popcorn 🍿
 
+## 🔫 function triggering
+
+With your function deployed in production you can now start triggering it using `serverless` framework directly or
+the AWS integration you've configured to trigger it on your behalf
+
+```sh
+$ AWS_PROFILE=prod npx serverless invoke --stage prod -f hello -d '{"foo":"bar"}'
+```
+
 ## 👴 retiring
 
 Experimentation will likely facilitate retiring ideas. Retiring applications should be as easy as creating and deploying them them. This project provides
