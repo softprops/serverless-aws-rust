@@ -21,7 +21,7 @@ $ serverless install \
   --name my-new-app
 ```
 
-This will download the source of a sample crowbar application and unpack it as a new service named
+This will download the source of a sample Rustlang application and unpack it as a new service named
 "my-new-app" in a directory called "my-new-app"
 
 
@@ -99,3 +99,7 @@ $ AWS_PROFILE=prod make destroy
 * See the [serverless-rust plugin's documentation](https://github.com/softprops/serverless-rust) for more information on plugin usage.
 
 * See the [aws rust runtime's documentation](https://github.com/awslabs/aws-lambda-rust-runtime) for more information on writing Rustlang lambda functions
+
+## 👯 Contributing
+
+This template's intent is to set a minimal baseline for getting engineers up an running with a set of repeatable best practices. See something you'd like in this template that would help others? Feel free to [open a new github issue](https://github.com/softprops/serverless-aws-rust/issues/new). Pull requests are also welcome.
