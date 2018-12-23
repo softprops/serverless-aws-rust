@@ -81,7 +81,7 @@ With your function deployed in production you can now start triggering it using 
 the AWS integration you've configured to trigger it on your behalf
 
 ```bash
-$ npx serverless invoke --stage prod -f hello -d '{"foo":"bar"}'
+$ npx serverless invoke -f hello -d '{"foo":"bar"}'
 ```
 
 ## 🔬 logs
