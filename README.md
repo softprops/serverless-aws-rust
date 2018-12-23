@@ -4,7 +4,7 @@ A sample template for bootstraping [Rustlang AWS Lambda](https://github.com/awsl
 
 ## ✨ features
 
-* 🦀 Build Rustlang applications targetting AWS Lambda with ease
+* 🦀 Build Rustlang applications targeting AWS Lambda with ease
 * 🛵 Continuous integration testing with travis CI
 * 🚀 Continuous deployment with travis CI
 * 🧪 Getting started unit tests
