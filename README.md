@@ -28,16 +28,15 @@ This will download the source of a sample Rustlang application and unpack it as 
 
 ## 🧙 how to be a wizard
 
-Assumming you have aws credentials with appropriate deployment permissions configured
-in a profile named "prod", you could impress your friends by creating a project
-that is _born_ in production.
+Assumming you have [aws credentials with appropriate deployment permissions configured](https://serverless.com/framework/docs/providers/aws/guide/credentials/), you can impress your friends by creating a project that is _born_ in production.
 
 ```bash
 $ npx serverless install \
   --url https://github.com/softprops/serverless-aws-rust \
   --name my-new-app \
   && cd my-new-app \
-  && AWS_PROFILE=prod make dependencies deploy
+  && npm i \
+  && npx serverless deploy
 ```
 
 `make dependencies` will make sure npm dependencies are installed, this only needs run once.
@@ -82,17 +81,26 @@ Finally, https://travis-ci.org/{username}/{my-new-service} in your browser and g
 With your function deployed in production you can now start triggering it using `serverless` framework directly or
 the AWS integration you've configured to trigger it on your behalf
 
-```sh
-$ AWS_PROFILE=prod npx serverless invoke --stage prod -f hello -d '{"foo":"bar"}'
+```bash
+$ npx serverless invoke --stage prod -f hello -d '{"foo":"bar"}'
+```
+
+## 🔬 logs
+
+When your function deployed in production you can now tail
+it's logs right from your project
+
+```bash
+$ npx serverless logs -f hello
 ```
 
 ## 👴 retiring
 
-Experimentation will likely facilitate retiring ideas. Retiring applications should be as easy as creating and deploying them them. This project provides
+Good code should be easily replaceable. Good code is should also be easily disposable. Retiring applications should be as easy as creating and deploying them them. This project provides
  a dual to `make deploy` for doing so: `make destroy`
 
 ```bash
-$ AWS_PROFILE=prod make destroy
+$ npx serverless remove
 ```
 
 ## ℹ️  additional information
