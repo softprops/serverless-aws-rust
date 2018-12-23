@@ -27,7 +27,7 @@ This will download the source of a sample Rustlang application and unpack it as 
 
 ## 🧙 how to be a wizard
 
-Assumming you have [aws credentials with appropriate deployment permissions configured](https://serverless.com/framework/docs/providers/aws/guide/credentials/), you can impress your friends by creating a project that is _born_ in a production environment.
+Assumming you have [aws credentials with appropriate deployment permissions configured](https://serverless.com/framework/docs/providers/aws/guide/credentials/) (if you already use any existing AWS tooling installed you likely already have this configured), you can impress your friends by creating a project that is _born_ in a production environment.
 
 ```bash
 $ npx serverless install \
