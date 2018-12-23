@@ -86,7 +86,7 @@ $ npx serverless invoke --stage prod -f hello -d '{"foo":"bar"}'
 
 ## 🔬 logs
 
-When your function deployed in production you can now tail
+With your function deployed in production you can now tail
 it's logs right from your project
 
 ```bash
