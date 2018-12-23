@@ -39,7 +39,7 @@ $ npx serverless install \
 ```
 
 `npm i` will make sure npm dependencies are installed. This only needs run once.
-The first time you run `npx serverless deploy` it will pull down and compile the base set
+The first time you run `npx serverless deploy` this project will pull down and compile the base set
 of dependencies and your application. Unless the dependencies change afterwards,
 this should only happen once, resulting in an out of the box rapid deployment
 cycle.
