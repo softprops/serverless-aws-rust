@@ -95,7 +95,7 @@ $ npx serverless logs -f hello
 
 ## 👴 retiring
 
-Good code should be easily replaceable. Good code is should also be easily disposable. Retiring applications should be as easy as creating and deploying them them. The dual of `serverless deploy` is `serverless remove`. Use this for retiring services and cleaning up resources.
+Good code should be easily replaceable. Good code should also be easily disposable. Retiring applications should be as easy as creating and deploying them them. The dual of `serverless deploy` is `serverless remove`. Use this for retiring services and cleaning up resources.
 
 ```bash
 $ npx serverless remove
