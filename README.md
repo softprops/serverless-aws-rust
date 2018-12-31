@@ -4,11 +4,10 @@ A sample template for bootstraping [Rustlang AWS Lambda](https://github.com/awsl
 
 ## ✨ features
 
-* 🦀 Build Rustlang applications with ease
+* 🦀 Build Rustlang applications targeting AWS Lambda with ease
 * 🛵 Continuous integration testing with travis CI
 * 🚀 Continuous deployment with travis CI
-* 🧪 Tests
-* 👩‍🏭 Simplified make based workflow
+* 🧪 Getting started unit tests
 
 ## 📦 install
 
@@ -28,20 +27,19 @@ This will download the source of a sample Rustlang application and unpack it as 
 
 ## 🧙 how to be a wizard
 
-Assumming you have aws credentials with appropriate deployment permissions configured
-in a profile named "prod", you could impress your friends by creating a project
-that is _born_ in production.
+Assumming you have [aws credentials with appropriate deployment permissions configured](https://serverless.com/framework/docs/providers/aws/guide/credentials/) (if you already use any existing AWS tooling installed you likely already have this configured), you can impress your friends by creating a project that is _born_ in a production environment.
 
 ```bash
 $ npx serverless install \
   --url https://github.com/softprops/serverless-aws-rust \
   --name my-new-app \
   && cd my-new-app \
-  && AWS_PROFILE=prod make dependencies deploy
+  && npm i \
+  && npx serverless deploy
 ```
 
-`make dependencies` will make sure npm dependencies are installed, this only needs run once.
-The first time you run `make deploy` it will pull down and compile the base set
+`npm i` will make sure npm dependencies are installed. This only needs run once.
+The first time you run `npx serverless deploy` this project will pull down and compile the base set
 of dependencies and your application. Unless the dependencies change afterwards,
 this should only happen once, resulting in an out of the box rapid deployment
 cycle.
@@ -79,20 +77,28 @@ Finally, https://travis-ci.org/{username}/{my-new-service} in your browser and g
 
 ## 🔫 function triggering
 
-With your function deployed in production you can now start triggering it using `serverless` framework directly or
+With your function deployed you can now start triggering it using `serverless` framework directly or
 the AWS integration you've configured to trigger it on your behalf
 
-```sh
-$ AWS_PROFILE=prod npx serverless invoke --stage prod -f hello -d '{"foo":"bar"}'
+```bash
+$ npx serverless invoke -f hello -d '{"foo":"bar"}'
+```
+
+## 🔬 logs
+
+With your function deployed you can now tail
+it's logs right from your project
+
+```bash
+$ npx serverless logs -f hello
 ```
 
 ## 👴 retiring
 
-Experimentation will likely facilitate retiring ideas. Retiring applications should be as easy as creating and deploying them them. This project provides
- a dual to `make deploy` for doing so: `make destroy`
+Good code should be easily replaceable. Good code is should also be easily disposable. Retiring applications should be as easy as creating and deploying them them. The dual of `serverless deploy` is `serverless remove`. Use this for retiring services and cleaning up resources.
 
 ```bash
-$ AWS_PROFILE=prod make destroy
+$ npx serverless remove
 ```
 
 ## ℹ️  additional information

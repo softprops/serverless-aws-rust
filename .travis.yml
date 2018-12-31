@@ -51,7 +51,7 @@ script:
   # test changes to behavior
   - cargo test
   # package application here to cache build artifacts for future build/deploys
-  - make package
+  - npm i --silent && npx serverless package
 
 # report coverage to coveralls (on nightly)
 # see https://github.com/xd009642/tarpaulin for more information
@@ -71,7 +71,7 @@ after_success: |
 # for more information
 deploy:
   - provider: script
-    script: make dependencies deploy
+    script: npx serverless deploy --conceal
     skip_cleanup: true
     on:
       branch: master
