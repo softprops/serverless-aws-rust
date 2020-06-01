@@ -1,0 +1,67 @@
+name: Main
+
+on: push
+
+jobs:
+  codestyle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Rust
+        uses: hecrj/setup-rust-action@v1
+        with:
+          components: rustfmt
+      - uses: actions/checkout@v2
+      - run: cargo fmt --all -- --check
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Rust
+        uses: hecrj/setup-rust-action@v1
+        with:
+          components: clippy
+      - uses: actions/checkout@v2
+      - run: cargo clippy --all-targets -- -D clippy::all
+
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Rust
+        uses: hecrj/setup-rust-action@v1
+      - uses: actions/checkout@v2
+      - run: cargo check --all
+
+  test:
+    needs: [codestyle, lint, compile]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Rust
+      uses: hecrj/setup-rust-action@v1
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Test
+      run: cargo test
+  # deploy on pushes to master branch
+  # assumes aws credentials (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+  # are configured in travis settings
+  # see https://serverless.com/framework/docs/providers/aws/guide/credentials/
+  # for more information
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - name: Set up Rust
+        uses: hecrj/setup-rust-action@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy
+        if: env.AWS_ACCESS_KEY_ID && env.AWS_SECRET_ACCESS_KEY
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+          #STAGE: prod
+        run: |
+          npm install
+          npx serverless deploy --conceal
