@@ -1,14 +1,17 @@
-use lambda_runtime::{error::HandlerError, lambda, Context};
+use lambda::handler_fn;
 use serde_json::Value;
 
-fn main() {
-    lambda!(handler)
+type Error = Box<dyn std::error::Error + Sync + Send + 'static>;
+
+#[tokio::main]
+async fn main() -> Result<(), Error> {
+    lambda::run(handler_fn(handler)).await?;
+    Ok(())
 }
 
-fn handler(
-    event: Value,
-    _: Context,
-) -> Result<Value, HandlerError> {
+async fn handler(
+    event: Value
+) -> Result<Value, Error> {
     Ok(event)
 }
 
@@ -17,13 +20,13 @@ mod tests {
     use super::*;
     use serde_json::json;
 
-    #[test]
-    fn handler_handles() {
+    #[tokio::test]
+    async fn handler_handles() {
         let event = json!({
             "answer": 42
         });
         assert_eq!(
-            handler(event.clone(), Context::default()).expect("expected Ok(_) value"),
+            handler(event.clone()).await.expect("expected Ok(_) value"),
             event
         )
     }
