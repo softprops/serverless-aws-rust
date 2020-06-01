@@ -9,9 +9,7 @@ async fn main() -> Result<(), Error> {
     Ok(())
 }
 
-async fn handler(
-    event: Value
-) -> Result<Value, Error> {
+async fn handler(event: Value) -> Result<Value, Error> {
     Ok(event)
 }
 
