@@ -1,33 +1,50 @@
-use lambda::{handler_fn, Context};
-use serde_json::Value;
-
-type Error = Box<dyn std::error::Error + Sync + Send + 'static>;
+use lambda_runtime::{service_fn, Error, LambdaEvent};
+use serde::{Deserialize, Serialize};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    lambda::run(handler_fn(handler)).await?;
+    lambda_runtime::run(service_fn(handler)).await?;
     Ok(())
 }
 
-async fn handler(event: Value, _: Context) -> Result<Value, Error> {
-    Ok(event)
+#[derive(Deserialize)]
+struct Request {
+    question: u32
+}
+
+#[derive(Serialize, Debug, PartialEq)]
+struct Response {
+    answer: u32
+}
+
+async fn handler(event: LambdaEvent<Request>) -> Result<Response, Error> {
+    Ok(Response {
+        answer: event.payload.question
+    })
 }
 
 #[cfg(test)]
 mod tests {
+    use lambda_runtime::Context;
+
     use super::*;
-    use serde_json::json;
 
     #[tokio::test]
     async fn handler_handles() {
-        let event = json!({
-            "answer": 42
-        });
+        let event = LambdaEvent {
+            payload: Request {
+                question: 42
+            },
+            context: Context::default()
+        };
+        let response = Response {
+            answer: event.payload.question
+        };
         assert_eq!(
-            handler(event.clone(), Context::default())
+            handler(event)
                 .await
                 .expect("expected Ok(_) value"),
-            event
+            response
         )
     }
 }
